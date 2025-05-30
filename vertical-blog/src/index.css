@@ -227,7 +227,7 @@ body {
     border-top: 2px solid var(--color-accent) !important; /* 上部にボーダー */
     display: flex !important;             /* flexレイアウト */
     flex-direction: row !important;       /* 横並び */
-    justify-content: space-between !important; /* 両端配置 */
+    justify-content: center !important;   /* 中央配置 */
     align-items: center !important;       /* 縦方向中央揃え */
     padding: 0.8rem 1rem !important;      /* 内部余白 */
     gap: 0.5rem !important;               /* ボタン間の間隔を狭める */
@@ -258,10 +258,20 @@ body {
   /* prev/next ボタンのスタイル */
   .article-navigation .nav-button.prev-button,
   .article-navigation .nav-button.next-button {
-    flex: 1 !important;                     /* 残りスペースを等分 */
-    max-width: 35% !important;              /* 最大幅を制限 */
+    position: absolute !important;          /* 絶対配置 */
     overflow: hidden !important;            /* はみ出しを隠す */
     text-overflow: ellipsis !important;     /* 省略記号 */
+    max-width: 25% !important;              /* 最大幅を制限 */
+  }
+
+  /* prev ボタンを左端に配置 */
+  .article-navigation .nav-button.prev-button {
+    left: 1rem !important;                  /* 左端から配置 */
+  }
+
+  /* next ボタンを右端に配置 */
+  .article-navigation .nav-button.next-button {
+    right: 1rem !important;                 /* 右端から配置 */
   }
 
   /* 記事一覧ボタンのスタイル */
