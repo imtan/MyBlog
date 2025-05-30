@@ -334,6 +334,7 @@ body {
   text-orientation: upright;
   font-size: 0.9rem;
   color: var(--color-accent);
+  height: 90vh;
   border-left: 2px solid var(--color-accent);
   padding-left: 1rem;
   overflow: hidden; /* はみ出し防止 */
@@ -397,6 +398,7 @@ body {
 
 /* コンテンツ本文 */
 .content-body {
+  height: 90vh; /* 本文の高さを調整 */
   overflow-x: auto;
   padding: 1rem 0;
 }
@@ -536,6 +538,7 @@ body {
   writing-mode: vertical-rl;
   text-orientation: upright;
   line-height: var(--line-height);
+  height: 90vh;
   overflow-x: auto;
   padding: 1rem 0;
   transition: all 0.3s ease; /* スムーズな変化のためのトランジション */
