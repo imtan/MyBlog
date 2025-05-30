@@ -615,6 +615,13 @@ body {
   padding: 1rem;
 }
 
+/* PC用: 記事一覧ボタンを非表示にする */
+@media (min-width: 769px) {
+  .article-navigation .nav-button.home-button {
+    display: none;
+  }
+}
+
 @media (max-width: 480px) {
   .article-navigation {
     padding: 1rem 0;
