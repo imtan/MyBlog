@@ -1,5 +1,5 @@
 import React from 'react';
-import AboutMe from './AboutMe';
+import AboutMe from './Aboutme';
 
 export default function Sidebar() {
 
