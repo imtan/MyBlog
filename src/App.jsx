@@ -7,12 +7,12 @@ export default function App() {
   const [view, setView] = useState('list'); // 'list' or 'article'
   const [currentSlug, setCurrentSlug] = useState('');
 
-  // URLハッシュの変更を監視
+  // URLパスの変更を監視
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#post/')) {
-        const slug = hash.replace('#post/', '');
+    const handlePathChange = () => {
+      const path = window.location.pathname;
+      if (path.startsWith('/post/')) {
+        const slug = path.replace('/post/', '');
         setCurrentSlug(slug);
         setView('article');
       } else {
@@ -20,15 +20,15 @@ export default function App() {
       }
     };
 
-    // 初期ロード時にもハッシュをチェック
-    handleHashChange();
+    // 初期ロード時にもパスをチェック
+    handlePathChange();
 
-    // ハッシュ変更イベントリスナーを追加
-    window.addEventListener('hashchange', handleHashChange);
+    // popstateイベントリスナーを追加（ブラウザの戻る/進むボタン用）
+    window.addEventListener('popstate', handlePathChange);
 
     // クリーンアップ関数
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePathChange);
     };
   }, []);
 

@@ -19,8 +19,13 @@ export default function ArticleList() {
               {post.content.substring(0, 100)}...
             </p>
             <a
-              href={`#post/${post.slug}`}
+              href={`/post/${post.slug}`}
               className="post-link"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState(null, '', `/post/${post.slug}`);
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
             >
               続きを読む
             </a>

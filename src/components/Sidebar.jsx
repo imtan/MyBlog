@@ -10,7 +10,12 @@ export default function Sidebar() {
 
         {/* ③ その他固定ボタン */}
         <div className="nav-buttons">
-          <a href="#/posts" className="nav-button">
+          <a href="/" className="nav-button"
+             onClick={(e) => {
+               e.preventDefault();
+               window.history.pushState(null, '', '/');
+               window.dispatchEvent(new PopStateEvent('popstate'));
+             }}>
             記事一覧
           </a>
         </div>

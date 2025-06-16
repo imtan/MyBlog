@@ -51,15 +51,30 @@ export default function Article({ slug }) {
         {/* 記事ナビゲーションをcontent-body内に移動 */}
         <div className="article-navigation">
           {prevPost && (
-            <a href={`#post/${prevPost.slug}`} className="nav-button prev-button">
+            <a href={`/post/${prevPost.slug}`} className="nav-button prev-button"
+               onClick={(e) => {
+                 e.preventDefault();
+                 window.history.pushState(null, '', `/post/${prevPost.slug}`);
+                 window.dispatchEvent(new PopStateEvent('popstate'));
+               }}>
               ← 次の記事: <span>{prevPost.frontmatter.title}</span>
             </a>
           )}
-          <a href="#/posts" className="nav-button home-button">
+          <a href="/" className="nav-button home-button"
+             onClick={(e) => {
+               e.preventDefault();
+               window.history.pushState(null, '', '/');
+               window.dispatchEvent(new PopStateEvent('popstate'));
+             }}>
             記事一覧
           </a>
           {nextPost && (
-            <a href={`#post/${nextPost.slug}`} className="nav-button next-button">
+            <a href={`/post/${nextPost.slug}`} className="nav-button next-button"
+               onClick={(e) => {
+                 e.preventDefault();
+                 window.history.pushState(null, '', `/post/${nextPost.slug}`);
+                 window.dispatchEvent(new PopStateEvent('popstate'));
+               }}>
               前の記事: <span>{nextPost.frontmatter.title}</span> →
             </a>
           )}
