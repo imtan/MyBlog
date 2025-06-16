@@ -4,6 +4,28 @@ import { getAllPosts } from '../utils/posts';
 export default function ArticleList() {
   const posts = getAllPosts();
 
+  // スマホ用のナビゲーション関数
+  const navigateToPost = (slug) => {
+    console.log('navigateToPost called with slug:', slug);
+
+    const newHash = `#post/${slug}`;
+    console.log('Setting hash to:', newHash);
+
+    // 現在のハッシュをクリア
+    if (window.location.hash) {
+      window.location.hash = '';
+    }
+
+    // 少し遅延してから新しいハッシュを設定
+    setTimeout(() => {
+      window.location.hash = newHash;
+      console.log('Hash set to:', window.location.hash);
+
+      // さらにイベントを手動で発火
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    }, 50);
+  };
+
   return (
     <div className="article-list">
       <div className="content-header">
@@ -18,20 +40,21 @@ export default function ArticleList() {
             <p className="post-excerpt">
               {post.content.substring(0, 100)}...
             </p>
-            <a
-              href={`#post/${post.slug}`}
+            <button
               className="post-link"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                window.location.hash = `post/${post.slug}`;
+                navigateToPost(post.slug);
               }}
-              onTouchStart={(e) => {
+              onTouchEnd={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
               }}
+              type="button"
             >
               続きを読む
-            </a>
+            </button>
           </article>
         ))}
       </div>

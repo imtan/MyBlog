@@ -15,11 +15,14 @@ export default function App() {
 
       if (hash.startsWith('#post/')) {
         const slug = hash.replace('#post/', '');
-        if (slug && slug !== currentSlug) {
+        console.log('Extracted slug:', slug); // デバッグ用
+        if (slug && slug.trim() !== '') {
           setCurrentSlug(slug);
           setView('article');
+          console.log('Switched to article view with slug:', slug); // デバッグ用
         }
       } else if (hash === '#/posts' || hash === '' || hash === '#') {
+        console.log('Switched to list view'); // デバッグ用
         setView('list');
       }
     };
@@ -30,11 +33,15 @@ export default function App() {
     // ハッシュ変更イベントリスナーを追加
     window.addEventListener('hashchange', handleHashChange);
 
+    // ポップステートイベントも監視（戻るボタン対応）
+    window.addEventListener('popstate', handleHashChange);
+
     // クリーンアップ関数
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleHashChange);
     };
-  }, [currentSlug]);
+  }, []); // dependencyを空配列に戻す
 
   return (
     <div className="layout">

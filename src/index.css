@@ -619,6 +619,18 @@ body {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   user-select: none;
+  /* スマホでのタッチ遅延を回避 */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* ボタンとしてのスタイル */
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
 }
 
 .post-link:hover {
@@ -627,10 +639,30 @@ body {
 
 /* スマホでのタップ時の視覚的フィードバック */
 @media (max-width: 480px) {
+  .post-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-bg-paper);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    border: none;
+    /* より確実なタッチ処理 */
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(249, 147, 21, 0.3);
+    font-family: var(--font-body);
+    font-weight: bold;
+  }
+
   .post-link:active {
-    color: #d69317;
+    background-color: #d69317;
     transform: scale(0.98);
     transition: all 0.1s ease;
+  }
+
+  .post-link:hover {
+    text-decoration: none;
+    background-color: #d69317;
   }
 }
 
