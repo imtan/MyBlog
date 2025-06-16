@@ -29,7 +29,7 @@ export default function ArticleList() {
   return (
     <div className="article-list">
       <div className="content-header">
-        <h1 className="title">記事一覧</h1>
+        <h1 className="title">いつも函数を味噌で煮る</h1>
       </div>
 
       <div className="posts-container">
