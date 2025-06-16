@@ -200,9 +200,6 @@ body {
     border-bottom: 3px solid var(--color-accent);
     padding: 0.8rem;
     margin-bottom: 0.5rem;
-    /* タッチイベントの改善 */
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
   }
 
   .post-title {
@@ -615,23 +612,10 @@ body {
   color: var(--color-accent);
   text-decoration: none;
   font-weight: bold;
-  /* タッチデバイス用の設定を追加 */
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
 }
 
 .post-link:hover {
   text-decoration: underline;
-}
-
-/* スマホでのタップ時の視覚的フィードバック */
-@media (max-width: 480px) {
-  .post-link:active {
-    color: #d69317;
-    transform: scale(0.98);
-    transition: all 0.1s ease;
-  }
 }
 
 /* 記事ナビゲーション */
