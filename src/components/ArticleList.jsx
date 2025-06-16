@@ -21,6 +21,14 @@ export default function ArticleList() {
             <a
               href={`#post/${post.slug}`}
               className="post-link"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.hash = `post/${post.slug}`;
+              }}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+              }}
             >
               続きを読む
             </a>

@@ -11,11 +11,15 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
+      console.log('Hash changed to:', hash); // デバッグ用
+
       if (hash.startsWith('#post/')) {
         const slug = hash.replace('#post/', '');
-        setCurrentSlug(slug);
-        setView('article');
-      } else {
+        if (slug && slug !== currentSlug) {
+          setCurrentSlug(slug);
+          setView('article');
+        }
+      } else if (hash === '#/posts' || hash === '' || hash === '#') {
         setView('list');
       }
     };
@@ -30,7 +34,7 @@ export default function App() {
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, []);
+  }, [currentSlug]);
 
   return (
     <div className="layout">
