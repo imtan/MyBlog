@@ -397,6 +397,7 @@ body {
 /* コンテンツヘッダー（タイトルと日付） */
 .content-header {
   margin-bottom: 0.5rem;
+  border-left: 2px solid var(--color-accent);
 }
 
 @media (max-width: 480px) {
