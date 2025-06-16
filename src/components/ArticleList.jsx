@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAllPosts } from '../utils/posts';
 
-export default function ArticleList() {
+export default function ArticleList({ navigateToPost }) {
   const posts = getAllPosts();
 
   return (
@@ -23,8 +23,7 @@ export default function ArticleList() {
               className="post-link"
               onClick={(e) => {
                 e.preventDefault();
-                window.history.pushState(null, '', `/post/${post.slug}`);
-                window.dispatchEvent(new PopStateEvent('popstate'));
+                navigateToPost(post.slug);
               }}
             >
               続きを読む

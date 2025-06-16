@@ -7,6 +7,18 @@ export default function App() {
   const [view, setView] = useState('list'); // 'list' or 'article'
   const [currentSlug, setCurrentSlug] = useState('');
 
+  // ナビゲーション関数
+  const navigateToPost = (slug) => {
+    setCurrentSlug(slug);
+    setView('article');
+    window.history.pushState(null, '', `/post/${slug}`);
+  };
+
+  const navigateToList = () => {
+    setView('list');
+    window.history.pushState(null, '', '/');
+  };
+
   // URLパスの変更を監視
   useEffect(() => {
     const handlePathChange = () => {
@@ -34,11 +46,11 @@ export default function App() {
 
   return (
     <div className="layout">
-      <Sidebar />
+      <Sidebar navigateToList={navigateToList} />
       {view === 'list' ? (
-        <ArticleList />
+        <ArticleList navigateToPost={navigateToPost} />
       ) : (
-        <Article slug={currentSlug} />
+        <Article slug={currentSlug} navigateToPost={navigateToPost} navigateToList={navigateToList} />
       )}
     </div>
   );

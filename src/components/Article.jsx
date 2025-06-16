@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import CodeBlock from './CodeBlock';
 import { getPostBySlug, getNextPost, getPreviousPost } from '../utils/posts';
 
-export default function Article({ slug }) {
+export default function Article({ slug, navigateToPost, navigateToList }) {
   // slugが指定されていない場合は最新の記事（post3）を表示
   const targetSlug = slug || 'post3';
   const post = getPostBySlug(targetSlug);
@@ -54,8 +54,7 @@ export default function Article({ slug }) {
             <a href={`/post/${prevPost.slug}`} className="nav-button prev-button"
                onClick={(e) => {
                  e.preventDefault();
-                 window.history.pushState(null, '', `/post/${prevPost.slug}`);
-                 window.dispatchEvent(new PopStateEvent('popstate'));
+                 navigateToPost(prevPost.slug);
                }}>
               ← 次の記事: <span>{prevPost.frontmatter.title}</span>
             </a>
@@ -63,8 +62,7 @@ export default function Article({ slug }) {
           <a href="/" className="nav-button home-button"
              onClick={(e) => {
                e.preventDefault();
-               window.history.pushState(null, '', '/');
-               window.dispatchEvent(new PopStateEvent('popstate'));
+               navigateToList();
              }}>
             記事一覧
           </a>
@@ -72,8 +70,7 @@ export default function Article({ slug }) {
             <a href={`/post/${nextPost.slug}`} className="nav-button next-button"
                onClick={(e) => {
                  e.preventDefault();
-                 window.history.pushState(null, '', `/post/${nextPost.slug}`);
-                 window.dispatchEvent(new PopStateEvent('popstate'));
+                 navigateToPost(nextPost.slug);
                }}>
               前の記事: <span>{nextPost.frontmatter.title}</span> →
             </a>

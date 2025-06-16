@@ -1,7 +1,7 @@
 import React from 'react';
 import AboutMe from './Aboutme';
 
-export default function Sidebar() {
+export default function Sidebar({ navigateToList }) {
 
   return (
     <aside className="sidebar">
@@ -13,8 +13,7 @@ export default function Sidebar() {
           <a href="/" className="nav-button"
              onClick={(e) => {
                e.preventDefault();
-               window.history.pushState(null, '', '/');
-               window.dispatchEvent(new PopStateEvent('popstate'));
+               navigateToList();
              }}>
             記事一覧
           </a>
